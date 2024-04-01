@@ -39,8 +39,9 @@ public class Folder implements Path{
                 }
                 else{
                     for (int j = 0; j < filesDicts.toArray().length; ++j) {
-                        if (filesDicts.get(j).getName().equals(tempStr)) {
-                            filesDicts.get(j).add(new String(tempStr), str, j);
+                        if (filesDicts.get(j).getName().contentEquals(tempStr)) {
+                            if (i>str.length())
+                                filesDicts.get(j).add(new String(tempStr), str, j);
                             return;
                         }
                     }
@@ -54,8 +55,9 @@ public class Folder implements Path{
         }
         else{
             for (int j = 0; j < filesDicts.toArray().length; ++j) {
-                if (filesDicts.get(j).getName().equals(tempStr)) {
-                    filesDicts.get(j).add(new String(tempStr), str, j);
+                if (filesDicts.get(j).getName().contentEquals(tempStr)) {
+                    if (i>str.length())
+                        filesDicts.get(j).add(new String(tempStr), str, j);
                     return;
                 }
             }
@@ -70,5 +72,5 @@ public class Folder implements Path{
         }
     }
     /////////////
-    public String getName(){return "";}
+    public String getName(){return new String(folderName);}
 }
