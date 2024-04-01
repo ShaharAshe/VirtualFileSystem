@@ -17,11 +17,16 @@ public class PathRow {
             inputPath = reader.nextLine();
         }
         for (String s : in) {
-            if (isFirst) {
-                filesDicts.add(new Folder("/root"));
-                isFirst = false;
+            try {
+                if (isFirst) {
+                    filesDicts.add(new Folder("/root"));
+                    isFirst = false;
+                }
+                filesDicts.get(0).add("/root", s, 0);
             }
-            filesDicts.get(0).add("/root", s, 0);
+            catch (Exception e){
+                System.out.println(e.getMessage());
+            }
         }
         System.out.println("--------------------");
         print();

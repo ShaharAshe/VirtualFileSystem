@@ -10,14 +10,16 @@ public class Folder implements Path{
     public Folder(String str) {
         folderName = str;
         i = 0;
+        System.out.printf("Dictionary: %s\n", folderName);
     }
-    public Folder(String str, String tempSt, int iN) {
+    public Folder(String str, String tempSt, int iN) throws Exception {
         folderName = tempSt;
         i = iN;
+        System.out.printf("Dictionary: %s\n", folderName);
         if(i < str.length())
             add(tempSt, str, i);
     }
-    public void add(String prefix, String str, int iN){
+    public void add(String prefix, String str, int iN) throws Exception {
         i = iN;
         StringBuilder tempStr = new StringBuilder();
         tempStr.append(prefix);
@@ -40,8 +42,8 @@ public class Folder implements Path{
                 else{
                     for (int j = 0; j < filesDicts.toArray().length; ++j) {
                         if (filesDicts.get(j).getName().contentEquals(tempStr)) {
-                            if (i>str.length())
-                                filesDicts.get(j).add(new String(tempStr), str, j);
+                            if (i<str.length())
+                                filesDicts.get(j).add(new String(tempStr), str, i);
                             return;
                         }
                     }
@@ -56,8 +58,8 @@ public class Folder implements Path{
         else{
             for (int j = 0; j < filesDicts.toArray().length; ++j) {
                 if (filesDicts.get(j).getName().contentEquals(tempStr)) {
-                    if (i>str.length())
-                        filesDicts.get(j).add(new String(tempStr), str, j);
+                    if (i<str.length())
+                        filesDicts.get(j).add(new String(tempStr), str, i);
                     return;
                 }
             }

@@ -4,14 +4,15 @@ public class File implements Path{
     private String fileName;
     int i;
 
-    public File(String str, String tempSt, int iN) {
+    public File(String str, String tempSt, int iN) throws Exception {
         fileName = tempSt;
         i = iN;
+        System.out.printf("File: %s\n", fileName);
         if(i < str.length())
             add(tempSt, str, i);
     }
 
-    public void add(String prefix, String str, int iN){
+    public void add(String prefix, String str, int iN) throws Exception {
         i = iN;
         StringBuilder tempStr = new StringBuilder();
         tempStr.append(prefix);
@@ -22,7 +23,7 @@ public class File implements Path{
                 tempStr.append(str.charAt(i));
             }
             else{
-                System.out.println("error!");
+                throw new Exception("Cannot add a component to a file.");
             }
         }
     }
