@@ -7,8 +7,8 @@ public class File implements Path{
     public File(String str, String tempSt, int iN){
         this.fileName = str;
         i = iN;
-
-        add(tempSt, str, i);
+        if(i != str.length())
+            add(tempSt, str, i);
     }
 
     public void add(String prefix, String str, int iN){

@@ -10,14 +10,14 @@ public class PathRow {
         Scanner reader = new Scanner(System.in);
         boolean isFirst = true;
         System.out.println("Enter file/directory paths (or 'exit' to quit):");
-        String inputPath;
+        String inputPath = reader.nextLine();
         do {
-            inputPath = reader.nextLine();
             if(isFirst) {
                 filesDicts.add(new Folder("/root"));
                 isFirst = false;
             }
             filesDicts.get(0).add("/root", inputPath, 0);
+            inputPath = reader.nextLine();
         } while (!inputPath.equals("exit"));
         System.out.println("--------------------");
         print();
