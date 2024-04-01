@@ -14,7 +14,7 @@ public class Folder implements Path{
     public Folder(String str, String tempSt, int iN) {
         folderName = tempSt;
         i = iN;
-        if(i != str.length())
+        if(i < str.length())
             add(tempSt, str, i);
     }
     public void add(String prefix, String str, int iN){
@@ -22,6 +22,7 @@ public class Folder implements Path{
         StringBuilder tempStr = new StringBuilder();
         tempStr.append(prefix);
         boolean isFile = false;
+        boolean isPrint = false;
         if (str.charAt(i) == '/')
             ++i;
         tempStr.append('/');
@@ -33,7 +34,8 @@ public class Folder implements Path{
             }
             else{
                 if (isFile){
-                    filesDicts.add(new File(new String(tempStr), str, i));
+                    filesDicts.add(new File(str, new String(tempStr), i));
+                    return;
                 }
                 else{
                     for (int j = 0; j < filesDicts.toArray().length; ++j) {
@@ -43,11 +45,12 @@ public class Folder implements Path{
                         }
                     }
                     filesDicts.add(new Folder(str, new String(tempStr), i));
+                    return;
                 }
             }
         }
         if (isFile){
-            filesDicts.add(new File(new String(tempStr), str, i));
+            filesDicts.add(new File(str, new String(tempStr), i));
         }
         else{
             for (int j = 0; j < filesDicts.toArray().length; ++j) {

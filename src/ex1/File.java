@@ -4,10 +4,10 @@ public class File implements Path{
     private String fileName;
     int i;
 
-    public File(String str, String tempSt, int iN){
-        this.fileName = str;
+    public File(String str, String tempSt, int iN) {
+        fileName = tempSt;
         i = iN;
-        if(i != str.length())
+        if(i < str.length())
             add(tempSt, str, i);
     }
 
