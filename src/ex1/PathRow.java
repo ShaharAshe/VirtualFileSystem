@@ -28,12 +28,5 @@ public class PathRow {
                 System.out.println(e.getMessage());
             }
         }
-        System.out.println("--------------------");
-        print();
-    }
-    public void print(){
-        for (Path fd : filesDicts){
-            fd.print();
-        }
     }
 }

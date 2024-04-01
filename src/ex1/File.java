@@ -7,9 +7,10 @@ public class File implements Path{
     public File(String str, String tempSt, int iN) throws Exception {
         fileName = tempSt;
         i = iN;
-        System.out.printf("File: %s\n", fileName);
-        if(i < str.length())
+        if(i < str.length()) {
+            System.out.printf("File: %s\n", getName());
             add(tempSt, str, i);
+        }
     }
 
     public void add(String prefix, String str, int iN) throws Exception {
@@ -27,8 +28,5 @@ public class File implements Path{
             }
         }
     }
-    public void print() {
-        System.out.print("File: ");
-        System.out.println(fileName);}
-    public String getName() {return "";}
+    public String getName() {return new String(fileName);}
 }

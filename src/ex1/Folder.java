@@ -66,13 +66,6 @@ public class Folder implements Path{
             filesDicts.add(new Folder(str, new String(tempStr), i));
         }
     }
-    public void print(){
-        System.out.print("directory: ");
-        System.out.println(folderName);
-        for (Path fd : filesDicts){
-            fd.print();
-        }
-    }
     /////////////
     public String getName(){return new String(folderName);}
 }
