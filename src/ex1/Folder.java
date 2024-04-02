@@ -3,7 +3,7 @@ package ex1;
 import java.util.ArrayList;
 
 public class Folder implements Path{
-    int i;
+    private int i;
     private final ArrayList<Path> filesDicts = new ArrayList<>();
     public String folderName;
     public Folder(String str) {
