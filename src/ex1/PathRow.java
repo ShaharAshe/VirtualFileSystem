@@ -1,21 +1,28 @@
 package ex1;
 
-import java.security.cert.TrustAnchor;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PathRow {
-    private final ArrayList<Path> filesDicts = new ArrayList<Path>();
-    public void readPath(){
+    private final ArrayList<Path> filesDicts = new ArrayList<>();
+
+    public void read(){
         ArrayList<String> in = new ArrayList<String>();
+        this.readPath(in);
+        printPath(in);
+    }
+    private void readPath(ArrayList<String> in){
         Scanner reader = new Scanner(System.in);
-        boolean isFirst = true;
         System.out.println("Enter file/directory paths (or 'exit' to quit):");
         String inputPath = reader.nextLine();
         while (!inputPath.equals("exit")){
             in.add(inputPath);
             inputPath = reader.nextLine();
         }
+    }
+
+    private void printPath(ArrayList<String> in){
+        boolean isFirst = true;
         for (String s : in) {
             try {
                 if (isFirst) {
@@ -24,7 +31,7 @@ public class PathRow {
                 }
                 filesDicts.get(0).add("/root", s, 0);
             }
-            catch (Exception e){
+            catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
         }

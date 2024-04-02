@@ -1,30 +1,28 @@
 package ex1;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Folder implements Path{
     int i;
-    private final ArrayList<Path> filesDicts = new ArrayList<Path>();
+    private final ArrayList<Path> filesDicts = new ArrayList<>();
     public String folderName;
     public Folder(String str) {
         folderName = str;
         i = 0;
         System.out.printf("Dictionary: %s\n", folderName);
     }
-    public Folder(String str, String tempSt, int iN) throws Exception {
+    public Folder(String str, String tempSt, int iN) throws IllegalArgumentException {
         folderName = tempSt;
         i = iN;
         System.out.printf("Dictionary: %s\n", folderName);
         if(i < str.length())
             add(tempSt, str, i);
     }
-    public void add(String prefix, String str, int iN) throws Exception {
+    public void add(String prefix, String str, int iN) throws IllegalArgumentException {
         i = iN;
         StringBuilder tempStr = new StringBuilder();
         tempStr.append(prefix);
         boolean isFile = false;
-        boolean isPrint = false;
         if (str.charAt(i) == '/')
             ++i;
         tempStr.append('/');
@@ -35,23 +33,12 @@ public class Folder implements Path{
                 tempStr.append(str.charAt(i));
             }
             else{
-                if (isFile){
-                    filesDicts.add(new File(str, new String(tempStr), i));
-                    return;
-                }
-                else{
-                    for (int j = 0; j < filesDicts.toArray().length; ++j) {
-                        if (filesDicts.get(j).getName().contentEquals(tempStr)) {
-                            if (i<str.length())
-                                filesDicts.get(j).add(new String(tempStr), str, i);
-                            return;
-                        }
-                    }
-                    filesDicts.add(new Folder(str, new String(tempStr), i));
-                    return;
-                }
+                updateAdd(isFile, tempStr, str);
             }
         }
+        updateAdd(isFile, tempStr, str);
+    }
+    private void updateAdd(boolean isFile, StringBuilder tempStr, String str){
         if (isFile){
             filesDicts.add(new File(str, new String(tempStr), i));
         }
