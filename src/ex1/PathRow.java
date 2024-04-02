@@ -1,18 +1,15 @@
 package ex1;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PathRow {
-    private final ArrayList<Path> filesDicts;
-    private boolean isFirst;
+    private Folder root;
 
     /**
-     * Constructs a PathRow object with an empty collection of paths.
+     * Constructs a PathRow object with a root folder representing the root directory.
      */
     public PathRow(){
-        this.filesDicts = new ArrayList<>();
-        this.isFirst = true;
+        this.root = new Folder("/root");
     }
 
     /**
@@ -25,11 +22,7 @@ public class PathRow {
         String inputPath = reader.nextLine();
         while (!inputPath.equals("exit")) {
             try {
-                if (this.isFirst) {
-                    this.filesDicts.add(new Folder("/root"));
-                    this.isFirst = false;
-                }
-                this.filesDicts.get(0).add("/root", inputPath, 0);
+                this.root.add("/root", inputPath, 0);
             } catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             } finally {
@@ -43,8 +36,6 @@ public class PathRow {
      * Prints all paths stored in the collection.
      */
     public void print(){
-        for (Path fd : filesDicts){
-            fd.print();
-        }
+        this.root.print();
     }
 }
