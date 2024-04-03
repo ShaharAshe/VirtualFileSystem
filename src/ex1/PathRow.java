@@ -2,18 +2,21 @@ package ex1;
 
 import java.util.Scanner;
 
+/**
+ * The PathRow class manages paths input by the user.
+ */
 public class PathRow {
-    private Folder root;
+    private final Folder root;
 
     /**
-     * Constructs a PathRow object with a root folder representing the root directory.
+     * Initializes the PathRow with a root folder.
      */
     public PathRow(){
-        this.root = new Folder("/root");
-    }
+        this.root = new Folder();
+    } // Initialized the root folder.
 
     /**
-     * Reads file/directory paths from the user and adds them to the collection.
+     * Reads paths input by the user and processes them.
      */
     public void read(){
         Scanner reader = new Scanner(System.in);
@@ -22,18 +25,18 @@ public class PathRow {
         String inputPath = reader.nextLine();
         while (!inputPath.equals("exit")) {
             try {
-                this.root.add("/root", inputPath, 0);
+                this.root.add(inputPath, 0); // Add new folder/ file to the root path.
             } catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
+                System.out.println(e.getMessage()); // print the errors
             } finally {
-                inputPath = reader.nextLine();
+                inputPath = reader.nextLine(); // Always read input from the user. until "exit".
             }
         }
-        this.print();
+        this.print(); // print all paths in the end
     }
 
     /**
-     * Prints all paths stored in the collection.
+     * Prints all paths.
      */
     public void print(){
         this.root.print();
