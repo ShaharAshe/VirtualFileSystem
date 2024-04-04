@@ -15,7 +15,7 @@ public class Main {
             PathRow filesDicts = new PathRow();
             filesDicts.read();
         }
-        catch (Exception e){
+        catch (Exception e){ // for general errors
             System.out.printf("Error: %s",e.getMessage());
         }
     }

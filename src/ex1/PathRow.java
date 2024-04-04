@@ -21,7 +21,7 @@ public class PathRow {
      */
     public void read(){
         Scanner reader = new Scanner(System.in);
-        ArrayList<String> inPath = new ArrayList<>();
+        ArrayList<String> inPath = new ArrayList<>(); // save the input. for output in format like what solange wants.
 
         System.out.println("Enter file/directory paths (or 'exit' to quit):");
         String inputPath = reader.nextLine();
@@ -31,17 +31,22 @@ public class PathRow {
         }
         try {
             this.addDictsFiles(inPath);
-        } catch (Exception e) {
-            System.out.println(e.getMessage()); // print the errors
+        } catch (Exception e) { // for general errors
+            System.out.printf("Error: %s",e.getMessage()); // print the errors
         }
         this.print(); // print all paths in the end
     }
 
+    /**
+     * Adds paths to the file system structure.
+     *
+     * @param inPath The list of paths to be added.
+     */
     private void addDictsFiles(ArrayList<String> inPath){
         for (String in : inPath) {
             try {
                 this.root.add(in, 0); // Add new folder/ file to the root path.
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) { // output the path error
                 System.out.println(e.getMessage()); // print the errors
             }
         }
