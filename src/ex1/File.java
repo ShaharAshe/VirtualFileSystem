@@ -30,7 +30,7 @@ public class File implements Path{
     public void add(String prefix, String str, int iN) throws IllegalArgumentException {
         /* check if we in the end of the path, or we have more folders/ file. if thar is throw an Exception */
         if (iN < str.length())
-            throw new IllegalArgumentException("Error in Path: "+str+"\nCannot add a component to a file.");
+            throw new IllegalArgumentException("Cannot add "+str+" to "+ getName());
     }
 
     /**

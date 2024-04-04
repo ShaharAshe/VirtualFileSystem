@@ -49,10 +49,10 @@ public class Folder implements Path{
     @Override
     public void add(String prefix, String str, int iN) throws IllegalArgumentException {
         /* check if we in the end of the path, or we have more folders/ file to add */
+        this.i = iN;
         if(this.i >= str.length())
             return;
 
-        this.i = iN;
         StringBuilder tempStr = new StringBuilder();
         tempStr.append(prefix);
         boolean isFile = false;
